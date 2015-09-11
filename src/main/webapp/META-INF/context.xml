@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+  <ResourceLink name="jdbc/gts-masterdata-services" global="jdbc/gts-masterdata-services" type="javax.sql.DataSource" />
+</Context>

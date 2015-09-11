@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+  <changeSet author="Iurii" id="list-changeset">
+    <comment>Create list_header and list_entry</comment>
+    <createTable tableName="list_header">
+      <column name="id" type="varchar2(256)">
+        <constraints nullable="false"
+                     primaryKey="true"
+                     primaryKeyName="con_pk_list_header_id"/>
+      </column>
+      <column name="name" type="varchar2(256)"/>
+      <column name="code" type="varchar2(256)"/>
+      <column name="version" type="number(19,0)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created" type="timestamp(6)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_by" type="varchar2(32)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="last_updated" type="timestamp(6)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="updated_by" type="varchar2(32)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="owner_id" type="varchar2(32)"/>
+      <column name="owner_name" type="varchar2(256)"/>
+      <column name="owner_code" type="varchar2(256)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="owner_type" type="varchar2(256)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status" type="varchar2(32)">
+        <constraints nullable="false" />
+      </column>
+    </createTable>
+
+    <createTable tableName="list_entry">
+      <column name="id" type="varchar2(256)">
+        <constraints nullable="false"
+                     primaryKey="true"
+                     primaryKeyName="con_pk_list_entry_id"/>
+      </column>
+      <column name="list_header_id" type="varchar2(256)">
+        <constraints nullable="false"
+                     foreignKeyName="con_fk_entry_id_to_header"
+                     references="list_header(ID)" />
+      </column>
+      <column name="name" type="varchar2(256)"/>
+      <column name="code" type="varchar2(256)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="type" type="varchar2(256)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="entry_sequence" type="number(19,0)"/>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
